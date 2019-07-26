@@ -2,6 +2,12 @@ package parser
 
 import "time"
 
+// ConsumptionsByWeekDay represents the energy consumptions split by weekdays
+type ConsumptionsByWeekDay = map[int]*Consumptions
+
+// ConsumptionsByHour represents energy consumptions split by day hours
+type ConsumptionsByHour = map[int]*Consumptions
+
 // Consumptions is a collection with multiple Consumption Entries
 type Consumptions = []ConsumptionEntry
 

@@ -25,9 +25,9 @@ func filterConsumptionsHourly(consumptions *Consumptions, hour int) *Consumption
 }
 
 // splitConsumptionsHourly split the consumptions by hour in a map
-func splitConsumptionsHourly(consumptions *Consumptions) *map[int]*Consumptions {
+func splitConsumptionsHourly(consumptions *Consumptions) *ConsumptionsByHour {
 
-	splitHoursConsumptions := make(map[int]*Consumptions, 24)
+	splitHoursConsumptions := make(ConsumptionsByHour, 24)
 
 	for hour := 0; hour < 24; hour++ {
 		filtered := filterConsumptionsHourly(consumptions, hour)
@@ -35,4 +35,16 @@ func splitConsumptionsHourly(consumptions *Consumptions) *map[int]*Consumptions 
 	}
 
 	return &splitHoursConsumptions
+}
+
+// splitConsumptionsWeekDays split the given consumptions by weekDay, 0=SUNDAY
+func splitConsumptionsWeekDays(consumptions *Consumptions) *ConsumptionsByWeekDay {
+	splitWeekDaysConsumptions := make(ConsumptionsByWeekDay, 7)
+
+	for weekDay := 0; weekDay < 7; weekDay++ {
+		filtered := filterConsumptionsWeekDay(consumptions, weekDay)
+		splitWeekDaysConsumptions[weekDay] = filtered
+	}
+
+	return &splitWeekDaysConsumptions
 }
