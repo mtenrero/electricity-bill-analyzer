@@ -23,3 +23,16 @@ func filterConsumptionsHourly(consumptions *Consumptions, hour int) *Consumption
 
 	return &filtered
 }
+
+// splitConsumptionsHourly split the consumptions by hour in a map
+func splitConsumptionsHourly(consumptions *Consumptions) *map[int]*Consumptions {
+
+	splitHoursConsumptions := make(map[int]*Consumptions, 24)
+
+	for hour := 0; hour < 24; hour++ {
+		filtered := filterConsumptionsHourly(consumptions, hour)
+		splitHoursConsumptions[hour] = filtered
+	}
+
+	return &splitHoursConsumptions
+}
