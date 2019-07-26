@@ -10,7 +10,7 @@ func TestCSVParse(t *testing.T) {
 
 	var consumptionsParsed []ConsumptionEntry
 
-	consumptionsParsed, err := parseCSVBytes(sampleCSV)
+	consumptionsParsed, err := ParseCSVBytes(sampleCSV)
 	if err != nil {
 		t.Error("parseCSVBytes errored :(")
 	}
@@ -33,9 +33,9 @@ func TestCSVParse(t *testing.T) {
 }
 
 func TestTimeParse(t *testing.T) {
-	consumptionsParsed, err := parseCSVBytes(sampleCSV)
+	consumptionsParsed, err := ParseCSVBytes(sampleCSV)
 
-	sTime, err := consumptionsParsed[0].timeConsumption()
+	sTime, err := consumptionsParsed[0].TimeConsumption()
 
 	if err != nil {
 		t.Error("Error parsing time fields")

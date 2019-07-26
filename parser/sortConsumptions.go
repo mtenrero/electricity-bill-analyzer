@@ -8,7 +8,7 @@ import (
 func filterConsumptionsWeekDay(consumptions *Consumptions, weekDay int) *Consumptions {
 
 	filtered := funk.Filter(*consumptions, func(consumption ConsumptionEntry) bool {
-		return int(consumption.weekDay()) == weekDay
+		return int(consumption.WeekDay()) == weekDay
 	}).(Consumptions)
 
 	return &filtered
@@ -17,7 +17,7 @@ func filterConsumptionsWeekDay(consumptions *Consumptions, weekDay int) *Consump
 // filterConsumptionsHourly Filters the consumptions by hour
 func filterConsumptionsHourly(consumptions *Consumptions, hour int) *Consumptions {
 	filtered := funk.Filter(*consumptions, func(consumption ConsumptionEntry) bool {
-		consumptionTime, _ := consumption.timeConsumption()
+		consumptionTime, _ := consumption.TimeConsumption()
 		return consumptionTime.Hour() == hour
 	}).(Consumptions)
 
@@ -25,7 +25,7 @@ func filterConsumptionsHourly(consumptions *Consumptions, hour int) *Consumption
 }
 
 // splitConsumptionsHourly split the consumptions by hour in a map
-func splitConsumptionsHourly(consumptions *Consumptions) *ConsumptionsByHour {
+func SplitConsumptionsHourly(consumptions *Consumptions) *ConsumptionsByHour {
 
 	splitHoursConsumptions := make(ConsumptionsByHour, 24)
 
@@ -38,7 +38,7 @@ func splitConsumptionsHourly(consumptions *Consumptions) *ConsumptionsByHour {
 }
 
 // splitConsumptionsWeekDays split the given consumptions by weekDay, 0=SUNDAY
-func splitConsumptionsWeekDays(consumptions *Consumptions) *ConsumptionsByWeekDay {
+func SplitConsumptionsWeekDays(consumptions *Consumptions) *ConsumptionsByWeekDay {
 	splitWeekDaysConsumptions := make(ConsumptionsByWeekDay, 7)
 
 	for weekDay := 0; weekDay < 7; weekDay++ {

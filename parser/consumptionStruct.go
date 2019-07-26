@@ -19,13 +19,13 @@ type ConsumptionEntry struct {
 	Consumo string `json:"Consumo_kWh"`
 }
 
-func (entry *ConsumptionEntry) timeConsumption() (time.Time, error) {
+func (entry *ConsumptionEntry) TimeConsumption() (time.Time, error) {
 	timeStr := entry.Fecha + " " + entry.Hora
 	return time.Parse("02/01/2006 15", timeStr)
 }
 
-func (entry *ConsumptionEntry) weekDay() time.Weekday {
-	timeConsumption, _ := entry.timeConsumption()
+func (entry *ConsumptionEntry) WeekDay() time.Weekday {
+	timeConsumption, _ := entry.TimeConsumption()
 
 	return timeConsumption.Weekday()
 }

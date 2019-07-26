@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func parseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
+func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
 	reader := csv.NewReader(bytes.NewReader(content))
 	reader.Comma = ';'
 
