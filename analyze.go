@@ -1,7 +1,6 @@
-package functions
+package main
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
@@ -27,12 +26,6 @@ func FullMeanAnalysis(w http.ResponseWriter, r *http.Request) {
 
 	report := analyzers.ReportWeekDaysHourly(&consumptions)
 
-	jsonReport, err := json.Marshal(report)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Error Generating Report"))
-	}
-
-	w.Write(jsonReport)
+	w.Write(report.JSON())
 
 }
