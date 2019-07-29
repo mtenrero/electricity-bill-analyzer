@@ -3,7 +3,7 @@ package analyzers
 import (
 	"strconv"
 
-	"github.com/mtenrero/lightBillAnalyzer/parser"
+	"github.com/mtenrero/electricity-bill-analyzer/parser"
 	"github.com/thoas/go-funk"
 	"gonum.org/v1/gonum/stat"
 )
