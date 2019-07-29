@@ -21,7 +21,7 @@ type ConsumptionEntry struct {
 
 func (entry *ConsumptionEntry) TimeConsumption() (time.Time, error) {
 	timeStr := entry.Fecha + " " + entry.Hora
-	return time.Parse("02/01/2006 15", timeStr)
+	return time.Parse("2/1/2006 15", timeStr)
 }
 
 func (entry *ConsumptionEntry) WeekDay() time.Weekday {
