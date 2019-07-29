@@ -1,15 +1,16 @@
 package analyzers
 
 import (
+	"strconv"
+
 	"github.com/mtenrero/electricity-bill-analyzer/parser"
 	"github.com/thoas/go-funk"
 	"gonum.org/v1/gonum/stat"
-	"strconv"
 )
 
 // Analyzes the Consumption done based on weeekdays intervals and returns the consumption avg for each weekDay
-func ReportWeekDays(consumptions *parser.Consumptions) []float64 {
-	sumKwH := make([]float64, 7)
+func ReportWeekDays(consumptions *parser.Consumptions) Report {
+	sumKwH := make([]ReportValue, 7)
 
 	consumptionsByWeekDay := *parser.SplitConsumptionsWeekDays(consumptions)
 
@@ -20,7 +21,7 @@ func ReportWeekDays(consumptions *parser.Consumptions) []float64 {
 		}).([]float64)
 
 		weekDayMean := stat.Mean(listConsumptions, nil)
-		sumKwH[weekDay] = weekDayMean
+		sumKwH[weekDay] = ReportValue(weekDayMean)
 	}
 
 	return sumKwH

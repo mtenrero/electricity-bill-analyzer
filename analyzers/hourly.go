@@ -9,9 +9,9 @@ import (
 )
 
 // ReportHourly makes calculations (Mean) by hour based on the electricity consumption
-func ReportHourly(consumptions *parser.Consumptions) []float64 {
+func ReportHourly(consumptions *parser.Consumptions) Report {
 
-	sumKwH := make([]float64, 24)
+	sumKwH := make([]ReportValue, 24)
 
 	consumptionsByHour := parser.SplitConsumptionsHourly(consumptions)
 
@@ -24,7 +24,7 @@ func ReportHourly(consumptions *parser.Consumptions) []float64 {
 
 		hourMean := stat.Mean(listConsumptions, nil)
 
-		sumKwH[hour] = hourMean
+		sumKwH[hour] = ReportValue(hourMean)
 	}
 
 	return sumKwH
