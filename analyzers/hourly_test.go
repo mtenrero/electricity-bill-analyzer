@@ -3,7 +3,7 @@ package analyzers
 import (
 	"testing"
 
-	"github.com/mtenrero/lightBillAnalyzer/parser"
+	"github.com/mtenrero/electricity-bill-analyzer/parser"
 )
 
 func TestHourlyReport(t *testing.T) {
