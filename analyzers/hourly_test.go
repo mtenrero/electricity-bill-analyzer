@@ -25,13 +25,7 @@ func TestHourlyReport(t *testing.T) {
 	consumptions = append(consumptions, cons2)
 	consumptions = append(consumptions, cons3)
 
-	hourlyConsumptions := *parser.SplitConsumptionsHourly(&consumptions)
-
-	report := ReportHourly(&hourlyConsumptions)
-
-	if len(*hourlyConsumptions[3]) != 3 {
-		t.Fail()
-	}
+	report := ReportHourly(&consumptions)
 
 	if report[3] != 3.1666666666666665 {
 		t.Fail()
