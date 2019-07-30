@@ -2,13 +2,25 @@ package analyzers
 
 import "strconv"
 
-type Report []ReportValue
+type ResponseReport struct {
+	WeekDaysReport     Report      `json:"weekDaysReport"`
+	HourlyReport       Report      `json:"hourlyReport"`
+	WeekDayHoursReport ReportGroup `json:"weekdayHoursReport"`
+}
+
+type Report struct {
+	Analysis []ReportValue `json:"analysis"`
+}
+
 type ReportGroup []Report
-type ReportValue float64
+
+type ReportValue struct {
+	Mean float64 `json:"mean"`
+}
 
 // Marshal the float64 ReportValue into a string
 func (value ReportValue) Marshal() string {
-	valueString := strconv.FormatFloat(float64(value), 'f', 4, 64)
+	valueString := strconv.FormatFloat(float64(value.Mean), 'f', 4, 64)
 	return valueString
 }
 
@@ -37,7 +49,7 @@ func (report *Report) JSON() []byte {
 
 	stringReport := []byte("{")
 
-	for index, value := range *report {
+	for index, value := range report.Analysis {
 		if index != 0 {
 			stringReport = append(stringReport, ',')
 		}

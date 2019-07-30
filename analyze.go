@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
@@ -24,8 +25,23 @@ func FullMeanAnalysis(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Error processing CSV data file. It may not have the appropriate format"))
 	}
 
-	report := analyzers.ReportWeekDaysHourly(&consumptions)
+	weekDaysHourReport := analyzers.ReportWeekDaysHourly(&consumptions)
+	hourlyReport := analyzers.ReportHourly(&consumptions)
+	weekDaysReport := analyzers.ReportWeekDays(&consumptions)
 
-	w.Write(report.JSON())
+	fullReport := analyzers.ResponseReport{
+		WeekDaysReport:     weekDaysReport,
+		HourlyReport:       hourlyReport,
+		WeekDayHoursReport: weekDaysHourReport,
+	}
+
+	jsonReport, err := json.Marshal(fullReport)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Error generating JSON report"))
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.Write(jsonReport)
 
 }

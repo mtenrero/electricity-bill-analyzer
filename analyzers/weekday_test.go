@@ -28,11 +28,11 @@ func TestReportWeekDays(t *testing.T) {
 
 	report := ReportWeekDays(&consumptions)
 
-	if report[0] != 2.25 {
+	if report.Analysis[0].Mean != 2.25 {
 		t.Fail()
 	}
 
-	if report[1] != 5 {
+	if report.Analysis[1].Mean != 5 {
 		t.Fail()
 	}
 }

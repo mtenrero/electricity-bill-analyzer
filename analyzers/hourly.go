@@ -1,6 +1,7 @@
 package analyzers
 
 import (
+	"math"
 	"strconv"
 	"strings"
 
@@ -12,7 +13,7 @@ import (
 // ReportHourly makes calculations (Mean) by hour based on the electricity consumption
 func ReportHourly(consumptions *parser.Consumptions) Report {
 
-	sumKwH := make([]ReportValue, 24)
+	analysis := make([]ReportValue, 25)
 
 	consumptionsByHour := parser.SplitConsumptionsHourly(consumptions)
 
@@ -26,8 +27,16 @@ func ReportHourly(consumptions *parser.Consumptions) Report {
 
 		hourMean := stat.Mean(listConsumptions, nil)
 
-		sumKwH[hour] = ReportValue(hourMean)
+		if math.IsNaN(hourMean) {
+			analysis[hour] = ReportValue{
+				Mean: 0,
+			}
+		} else {
+			analysis[hour] = ReportValue{
+				Mean: hourMean,
+			}
+		}
 	}
 
-	return sumKwH
+	return Report{Analysis: analysis}
 }

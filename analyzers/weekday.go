@@ -10,7 +10,7 @@ import (
 
 // Analyzes the Consumption done based on weeekdays intervals and returns the consumption avg for each weekDay
 func ReportWeekDays(consumptions *parser.Consumptions) Report {
-	sumKwH := make([]ReportValue, 7)
+	analysis := make([]ReportValue, 7)
 
 	consumptionsByWeekDay := *parser.SplitConsumptionsWeekDays(consumptions)
 
@@ -21,8 +21,8 @@ func ReportWeekDays(consumptions *parser.Consumptions) Report {
 		}).([]float64)
 
 		weekDayMean := stat.Mean(listConsumptions, nil)
-		sumKwH[weekDay] = ReportValue(weekDayMean)
+		analysis[weekDay] = ReportValue(ReportValue{Mean: weekDayMean})
 	}
 
-	return sumKwH
+	return Report{Analysis: analysis}
 }
