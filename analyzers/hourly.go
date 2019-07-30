@@ -2,6 +2,7 @@ package analyzers
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/mtenrero/electricity-bill-analyzer/parser"
 	"github.com/thoas/go-funk"
@@ -18,8 +19,9 @@ func ReportHourly(consumptions *parser.Consumptions) Report {
 	for hour, consumptions := range *consumptionsByHour {
 
 		listConsumptions := funk.Map(*consumptions, func(consumption parser.ConsumptionEntry) float64 {
-			float, _ := strconv.ParseFloat(consumption.Consumo, 64)
-			return float
+			consumoSanitized := strings.Replace(consumption.Consumo, ",", ".", -1)
+			floatValue, _ := strconv.ParseFloat(consumoSanitized, 64)
+			return floatValue
 		}).([]float64)
 
 		hourMean := stat.Mean(listConsumptions, nil)
