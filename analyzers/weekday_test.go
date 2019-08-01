@@ -10,17 +10,17 @@ func TestReportWeekDays(t *testing.T) {
 	consumptions := make(parser.Consumptions, 0)
 	cons1 := parser.ConsumptionEntry{
 		Fecha:   "28/7/2019",
-		Hora:    "3",
+		Hora:    3,
 		Consumo: "0,7",
 	}
 	cons2 := parser.ConsumptionEntry{
 		Fecha:   "21/7/2019",
-		Hora:    "3",
+		Hora:    3,
 		Consumo: "3,8",
 	}
 	cons3 := parser.ConsumptionEntry{
 		Fecha:   "29/07/2019",
-		Hora:    "3",
+		Hora:    3,
 		Consumo: "5",
 	}
 	consumptions = append(consumptions, cons1)

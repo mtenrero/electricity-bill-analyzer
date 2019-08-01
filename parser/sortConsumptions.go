@@ -1,8 +1,6 @@
 package parser
 
 import (
-	"strconv"
-
 	"github.com/thoas/go-funk"
 )
 
@@ -19,7 +17,7 @@ func filterConsumptionsWeekDay(consumptions *Consumptions, weekDay int) *Consump
 // filterConsumptionsHourly Filters the consumptions by hour
 func filterConsumptionsHourly(consumptions *Consumptions, hour int) *Consumptions {
 	filtered := funk.Filter(*consumptions, func(consumption ConsumptionEntry) bool {
-		return consumption.Hora == strconv.Itoa(hour)
+		return consumption.Hora == hour
 	}).(Consumptions)
 
 	return &filtered

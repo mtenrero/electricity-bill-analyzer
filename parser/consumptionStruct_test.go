@@ -7,7 +7,7 @@ func TestTimeZerosNoZeros(t *testing.T) {
 	consumptionNoZero := ConsumptionEntry{
 		CUPS:    "87126873678TEST",
 		Fecha:   "3/7/2019",
-		Hora:    "17",
+		Hora:    17,
 		Consumo: "2,45",
 	}
 	consumptionNoZeroTime, _ := consumptionNoZero.TimeConsumption()
@@ -15,7 +15,7 @@ func TestTimeZerosNoZeros(t *testing.T) {
 	consumptionZero := ConsumptionEntry{
 		CUPS:    "TEST2",
 		Fecha:   "03/07/2019",
-		Hora:    "5",
+		Hora:    5,
 		Consumo: "1,22",
 	}
 	consumptionZeroTime, _ := consumptionZero.TimeConsumption()

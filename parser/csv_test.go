@@ -27,7 +27,7 @@ func TestCSVParse(t *testing.T) {
 		t.Error("Not parsed correctly")
 	}
 
-	if consumptionsParsed[1].Hora != "2" {
+	if consumptionsParsed[1].Hora != 2 {
 		t.Error("Not parsed correctly")
 	}
 }
@@ -36,7 +36,6 @@ func TestTimeParse(t *testing.T) {
 	consumptionsParsed, err := ParseCSVBytes(sampleCSV)
 
 	sTime, err := consumptionsParsed[0].TimeConsumption()
-
 	if err != nil {
 		t.Error("Error parsing time fields")
 	}

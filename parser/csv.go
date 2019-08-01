@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"io"
 	"log"
+	"strconv"
 )
 
 func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
@@ -28,10 +29,11 @@ func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
 		if header == nil {
 			header = record
 		} else {
+			hora, _ := strconv.Atoi(record[2])
 			consumptionEntry := ConsumptionEntry{
 				CUPS:    record[0],
 				Fecha:   record[1],
-				Hora:    record[2],
+				Hora:    hora,
 				Consumo: record[3],
 			}
 
