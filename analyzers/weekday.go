@@ -23,7 +23,10 @@ func ReportWeekDays(consumptions *parser.Consumptions) Report {
 		}).([]float64)
 
 		weekDayMean := stat.Mean(listConsumptions, nil)
-		analysis[weekDay] = ReportValue(ReportValue{Mean: weekDayMean})
+		analysis[weekDay] = ReportValue(ReportValue{
+			WeekDay: weekDay,
+			Mean:    weekDayMean,
+		})
 	}
 
 	return Report{Analysis: analysis}

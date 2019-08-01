@@ -29,10 +29,12 @@ func ReportHourly(consumptions *parser.Consumptions) Report {
 
 		if math.IsNaN(hourMean) {
 			analysis[hour] = ReportValue{
+				Hour: hour,
 				Mean: 0,
 			}
 		} else {
 			analysis[hour] = ReportValue{
+				Hour: hour,
 				Mean: hourMean,
 			}
 		}
