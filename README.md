@@ -1,5 +1,8 @@
 # Electricity bill Analyzer
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/mtenrero/electricity-bill-analyzer)](https://goreportcard.com/report/github.com/mtenrero/electricity-bill-analyzer)
+[![Build Status](https://travis-ci.org/mtenrero/electricity-bill-analyzer.svg?branch=master)](https://travis-ci.org/mtenrero/electricity-bill-analyzer)
+
 This reposiory contains the code for the Golang Cloud Functions/Lambdas used to parse and analyze your real consumptions provided by your electricity distribution company and gives you practical information about hourly and daily usage.
 
 This will help you in making clever decissions about your electricity provider promotions and product selection.
