@@ -1,8 +1,9 @@
 package analyzers
 
 import (
-	"github.com/mtenrero/electricity-bill-analyzer/parser"
 	"testing"
+
+	"github.com/mtenrero/electricity-bill-analyzer/parser"
 )
 
 func TestReportWeekDays(t *testing.T) {
@@ -10,12 +11,12 @@ func TestReportWeekDays(t *testing.T) {
 	cons1 := parser.ConsumptionEntry{
 		Fecha:   "28/7/2019",
 		Hora:    "3",
-		Consumo: "0.7",
+		Consumo: "0,7",
 	}
 	cons2 := parser.ConsumptionEntry{
 		Fecha:   "21/7/2019",
 		Hora:    "3",
-		Consumo: "3.8",
+		Consumo: "3,8",
 	}
 	cons3 := parser.ConsumptionEntry{
 		Fecha:   "29/07/2019",
