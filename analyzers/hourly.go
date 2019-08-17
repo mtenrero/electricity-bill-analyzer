@@ -18,6 +18,7 @@ func ReportHourly(consumptions *parser.Consumptions) Report {
 	consumptionsByHour := parser.SplitConsumptionsHourly(consumptions)
 
 	for hour, consumptions := range *consumptionsByHour {
+		hourToSet := hour
 
 		listConsumptions := funk.Map(*consumptions, func(consumption parser.ConsumptionEntry) float64 {
 			consumoSanitized := strings.Replace(consumption.Consumo, ",", ".", -1)
@@ -29,13 +30,13 @@ func ReportHourly(consumptions *parser.Consumptions) Report {
 
 		if math.IsNaN(hourMean) {
 			analysis[hour] = ReportValue{
-				Hour: hour,
-				Mean: 0,
+				Hour: &hourToSet,
+				Mean: nil,
 			}
 		} else {
 			analysis[hour] = ReportValue{
-				Hour: hour,
-				Mean: hourMean,
+				Hour: &hourToSet,
+				Mean: &hourMean,
 			}
 		}
 	}

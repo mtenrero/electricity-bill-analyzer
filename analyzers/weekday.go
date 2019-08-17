@@ -16,6 +16,8 @@ func ReportWeekDays(consumptions *parser.Consumptions) Report {
 	consumptionsByWeekDay := *parser.SplitConsumptionsWeekDays(consumptions)
 
 	for weekDay := 0; weekDay < 7; weekDay++ {
+
+		weekDayToSet := weekDay
 		listConsumptions := funk.Map(*consumptionsByWeekDay[weekDay], func(consumption parser.ConsumptionEntry) float64 {
 			consumoSanitized := strings.Replace(consumption.Consumo, ",", ".", -1)
 			floatValue, _ := strconv.ParseFloat(consumoSanitized, 64)
@@ -24,8 +26,8 @@ func ReportWeekDays(consumptions *parser.Consumptions) Report {
 
 		weekDayMean := stat.Mean(listConsumptions, nil)
 		analysis[weekDay] = ReportValue(ReportValue{
-			WeekDay: weekDay,
-			Mean:    weekDayMean,
+			WeekDay: &weekDayToSet,
+			Mean:    &weekDayMean,
 		})
 	}
 

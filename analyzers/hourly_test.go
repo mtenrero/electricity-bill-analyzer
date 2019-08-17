@@ -27,7 +27,7 @@ func TestHourlyReport(t *testing.T) {
 
 	report := ReportHourly(&consumptions)
 
-	if report.Analysis[3].Mean != 3.1666666666666665 {
+	if *report.Analysis[3].Mean != 3.1666666666666665 {
 		t.Fail()
 	}
 }

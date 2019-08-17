@@ -5,13 +5,18 @@ import (
 )
 
 // Analyzes the Consumption done based on weeekdays intervals and returns the consumption avg for each weekDay
-func ReportWeekDaysHourly(consumptions *parser.Consumptions) ReportGroup {
-	report := make([]Report, 7)
+func ReportWeekDaysHourly(consumptions *parser.Consumptions) []ReportWeekDayHourly {
+	report := make([]ReportWeekDayHourly, 7)
 
 	consumptionsByWeekDay := *parser.SplitConsumptionsWeekDays(consumptions)
 
 	for weekDay := 0; weekDay < 7; weekDay++ {
-		report[weekDay] = ReportHourly(consumptionsByWeekDay[weekDay])
+		weekDayToSet := weekDay
+		reportweekDay := ReportWeekDayHourly{
+			WeekDay:  &weekDayToSet,
+			Analysis: ReportHourly(consumptionsByWeekDay[weekDay]),
+		}
+		report[weekDay] = reportweekDay
 	}
 
 	return report
