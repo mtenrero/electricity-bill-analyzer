@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Righteous&display=swap');
+.logo {
+    float: center;
+    color: white;
+    font-family: 'Righteous', cursive;
+    font-size: large;
+    font-size-adjust: initial;
+}
+.logo_extra {
+    float: right;
+    color: white;
+    font-size: small ;
+    font-style: italic;
+    font-size-adjust: initial;
+    padding-block: initial;
+    margin-left: 2%;
+}
