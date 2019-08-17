@@ -17,7 +17,6 @@ class Stepper extends React.Component {
     }
 
     moveStep(step) {
-        message.info("Step")
         this.setState({step: this.state.step + 1})
     }
 
@@ -30,7 +29,8 @@ class Stepper extends React.Component {
                     <Step title="Análisis" description="Espera mientras analizamos tus patrones de gasto energético" />
                     <Step title="Informe" description="Examina tus patrones de gasto energético" />
                 </Steps>
-                <FormUpload next={this.moveStep.bind(this)}></FormUpload>
+
+                { this.state.step < 2 ? <FormUpload next={this.moveStep.bind(this)} step={this.state.step}></FormUpload>: null}
             </div>
         );
     }

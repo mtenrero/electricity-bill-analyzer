@@ -2,7 +2,7 @@ import React from 'react';
 
 import './steps.css'
 
-import { Upload, Icon, Button, message, Form } from 'antd';
+import { Upload, Icon, Button, message, Form, Spin } from 'antd';
 const { Dragger } = Upload;
 
 class Uploader extends React.Component {
@@ -60,6 +60,7 @@ class Uploader extends React.Component {
         const { form: { getFieldDecorator }} = this.props;
         return(
             <div className="fileDragger">
+                <Spin spinning={this.props.step === 1}>
                     <Form.Item>
                         {getFieldDecorator('file', {
                             initialValie: this.props.dataset && this.props.dataset.filename ? this.props.dataset.filename : [],
@@ -80,6 +81,7 @@ class Uploader extends React.Component {
                         )}
                         
                     </Form.Item>
+                </Spin>
                 <div className="uploadConsumption">
                     <Button 
                         type="primary" 
