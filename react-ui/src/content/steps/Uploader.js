@@ -81,7 +81,14 @@ class Uploader extends React.Component {
                         
                     </Form.Item>
                 <div className="uploadConsumption">
-                    <Button type="primary" shape="round" icon="cloud-upload" size="large" disabled={!this.state.uploaded}>
+                    <Button 
+                        type="primary" 
+                        shape="round" 
+                        icon="cloud-upload" 
+                        size="large" 
+                        disabled={!this.state.uploaded}
+                        onClick={this.props.next}
+                    >
                         Analizar consumo
                     </Button>
                 </div>
