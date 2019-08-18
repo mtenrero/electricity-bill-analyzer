@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/csv"
 	"io"
-	"log"
 	"strconv"
 )
 
@@ -15,7 +14,7 @@ func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
 	var consumptions = make([]ConsumptionEntry, 0)
 
 	var header []string
-	var err error
+	var glerror error
 
 	for {
 		record, err := reader.Read()
@@ -24,7 +23,8 @@ func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
 			break
 		}
 		if err != nil {
-			log.Fatal(err)
+			glerror = err
+			break
 		}
 		if header == nil {
 			header = record
@@ -41,5 +41,5 @@ func ParseCSVBytes(content []byte) ([]ConsumptionEntry, error) {
 		}
 	}
 
-	return consumptions, err
+	return consumptions, glerror
 }

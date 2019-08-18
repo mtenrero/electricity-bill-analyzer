@@ -1,4 +1,4 @@
-package electricity
+package main
 
 import (
 	"encoding/json"

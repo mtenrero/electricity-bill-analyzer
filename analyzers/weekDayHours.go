@@ -13,8 +13,9 @@ func ReportWeekDaysHourly(consumptions *parser.Consumptions) []ReportWeekDayHour
 	for weekDay := 0; weekDay < 7; weekDay++ {
 		weekDayToSet := weekDay
 		reportweekDay := ReportWeekDayHourly{
-			WeekDay:  &weekDayToSet,
-			Analysis: ReportHourly(consumptionsByWeekDay[weekDay]),
+			WeekDay:    &weekDayToSet,
+			WeekString: WeekDayString(weekDayToSet),
+			Analysis:   ReportHourly(consumptionsByWeekDay[weekDay]),
 		}
 		report[weekDay] = reportweekDay
 	}

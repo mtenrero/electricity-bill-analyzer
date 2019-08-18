@@ -1,5 +1,3 @@
 #!/bin/bash
 
-if err != nil {
-		w.WriteHeader(http.StatusUnprocessableEntity)
-	}
+gcloud functions deploy FullMeanAnalysis-1 --runtime go111

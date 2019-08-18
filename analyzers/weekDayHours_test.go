@@ -35,7 +35,7 @@ func TestReportWeekDaysHourly(t *testing.T) {
 
 	report := ReportWeekDaysHourly(&consumptions)
 
-	if *report[0].Analysis[4].Mean != 5.895 {
+	if *report[0].Analysis.Analysis[4].Mean != 5.895 {
 		t.Fail()
 	}
 }
