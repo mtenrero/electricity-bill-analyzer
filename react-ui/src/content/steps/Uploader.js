@@ -2,6 +2,8 @@ import React from 'react';
 
 import './steps.css'
 
+import axios from 'axios';
+
 import { Upload, Icon, Button, message, Form, Spin } from 'antd';
 const { Dragger } = Upload;
 
@@ -19,34 +21,23 @@ class Uploader extends React.Component {
         };
     };
 
-    beforeUpload(file) {
-        const isCSV = file.name.match(/\.*.csv/i);
-        if (!isCSV) {
-            let fileList = [];
-            this.setState({fileList})
-            message.error('Debe ser un fichero con formato CSV');
-        } else {
-            let fileList = [file];
-            this.setState({fileList})
-            message.success('Fichero preparado')
-            return false
-        }
-    }
-
     handleUploadDone = (info) => this.setState({uploaded: true});
 
     normFile(e) {
         console.log('Upload event', e);
         if (Array.isArray(e)) {
+            this.setState({fileUpload: e.file})
             return e;
         }
         if (e.fileList.length > 1) {
+            this.setState({fileUpload: e.file})
             e.fileList.shift();
         }
         return e && e.fileList;
     }
 
     dummyRequest({ file, onSuccess }) {
+        this.state.file = file
         const isCSV = file.name.match(/\.*.csv/i);
         if (!isCSV) {
             message.error('Debe ser un fichero con formato CSV');
@@ -56,47 +47,69 @@ class Uploader extends React.Component {
         }
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+
+        console.log(this.state)
+        this.props.next();
+
+        const formData = new FormData()
+        formData.append('file', this.state.file)
+
+        axios.post("http://localhost:5000/", formData, {
+        }).then( res => {
+            console.log(res)
+            this.props.next();
+        }).catch(e => {
+            console.log(e);
+            this.props.servererror();
+        })
+    }
+
     render() {
         const { form: { getFieldDecorator }} = this.props;
         return(
             <div className="fileDragger">
                 <Spin spinning={this.props.step === 1}>
-                    <Form.Item>
-                        {getFieldDecorator('file', {
-                            initialValie: this.props.dataset && this.props.dataset.filename ? this.props.dataset.filename : [],
-                            valuePropName: 'fileList',
-                            getValueFromEvent: this.normFile
-                        })(
-                            <Dragger {...this.draggerProps}
-                            onChange={this.handleUploadDone}
-                            customRequest={this.dummyRequest}>
-                                <p className="ant-upload-drag-icon">
-                                    <Icon type="inbox" />
-                                </p>
-                                <p className="ant-upload-text">Selecciona o arrastra un fichero al área delimitada</p>
-                                <p className="ant-upload-hint">
-                                    Sólo se admiten ficheros CSV
-                                </p>
-                            </Dragger>
-                        )}
-                        
-                    </Form.Item>
+                    <Form onSubmit={this.handleSubmit.bind(this)}>
+                        <Form.Item>
+                            {getFieldDecorator('file', {
+                                initialValie: this.props.dataset && this.props.dataset.filename ? this.props.dataset.filename : [],
+                                valuePropName: 'fileList',
+                                getValueFromEvent: this.normFile
+                            })(
+                                <Dragger {...this.draggerProps}
+                                onChange={this.handleUploadDone}
+                                customRequest={this.dummyRequest.bind(this)}>
+                                    <p className="ant-upload-drag-icon">
+                                        <Icon type="inbox" />
+                                    </p>
+                                    <p className="ant-upload-text">Selecciona o arrastra un fichero al área delimitada</p>
+                                    <p className="ant-upload-hint">
+                                        Sólo se admiten ficheros CSV
+                                    </p>
+                                </Dragger>
+                            )}
+                            
+                        </Form.Item>
+                        <Form.Item className="uploadConsumption">
+                            <Button 
+                                type="primary" 
+                                shape="round" 
+                                icon="cloud-upload" 
+                                size="large"
+                                htmlType="submit" 
+                                disabled={!this.state.uploaded}
+                            >
+                                Analizar consumo
+                            </Button>
+                        </Form.Item>
+                    </Form>
                 </Spin>
-                <div className="uploadConsumption">
-                    <Button 
-                        type="primary" 
-                        shape="round" 
-                        icon="cloud-upload" 
-                        size="large" 
-                        disabled={!this.state.uploaded}
-                        onClick={this.props.next}
-                    >
-                        Analizar consumo
-                    </Button>
-                </div>
+                
             </div>
         );
     }
 }
 
-export default Uploader;
+export default Form.create() (Uploader);
