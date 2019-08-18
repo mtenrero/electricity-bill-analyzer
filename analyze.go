@@ -2,6 +2,7 @@ package electricity
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
