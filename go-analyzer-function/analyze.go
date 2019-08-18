@@ -1,7 +1,8 @@
-package electricity
+package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -11,9 +12,20 @@ import (
 
 func FullMeanAnalysis(w http.ResponseWriter, r *http.Request) {
 
-	const maxMemory = 5 * 1024 * 1024 // 5 megabytes
+	(w).Header().Set("Access-Control-Allow-Origin", "*")
+	(w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	(w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
-	b, err := ioutil.ReadAll(r.Body)
+	r.ParseMultipartForm(10 << 20)
+	file, _, err := r.FormFile("file")
+	if err != nil {
+		fmt.Println("Error Retrieving the File")
+		fmt.Println(err)
+		return
+	}
+	defer file.Close()
+
+	b, err := ioutil.ReadAll(file)
 	if err != nil {
 		http.Error(w, "Could not read request", http.StatusBadRequest)
 	}
