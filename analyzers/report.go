@@ -11,12 +11,14 @@ type Report struct {
 }
 
 type ReportWeekDayHourly struct {
-	WeekDay  *int   `json:"weekDay,omitempty"`
-	Analysis Report `json:"report,omitempty"`
+	WeekDay    *int    `json:"weekDay,omitempty"`
+	WeekString *string `json:"weekString,omitempty`
+	Analysis   Report  `json:"report,omitempty"`
 }
 
 type ReportValue struct {
-	Hour    *int     `json:"hour,omitempty"`
-	WeekDay *int     `json:"weekDay,omitempty"`
-	Mean    *float64 `json:"mean,omitempty"`
+	Hour       *int     `json:"hour,omitempty"`
+	WeekDay    *int     `json:"weekDay,omitempty"`
+	WeekString *string  `json:"weekString,omitempty"`
+	Mean       *float64 `json:"mean,omitempty"`
 }
