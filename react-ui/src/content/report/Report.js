@@ -2,6 +2,7 @@ import React from 'react';
 import WeekDaysReport from './WeekDaysReport';
 import { Card } from 'antd';
 import HourlyReport from './HourlyReport';
+import WeekHourlyReport from './WeekHourlyReport';
 
 class Report extends React.Component {
     
@@ -20,6 +21,9 @@ class Report extends React.Component {
                 </Card>
                 <Card title="Media de consumo horario" className="cardReport">
                     <HourlyReport {...this.props}></HourlyReport>
+                </Card>
+                <Card title="Media de consumo horario fraccionado por días de la semana" className="cardReport">
+                    <WeekHourlyReport {...this.props}></WeekHourlyReport>
                 </Card>
                 
             </div>
