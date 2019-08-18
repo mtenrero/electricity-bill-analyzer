@@ -50,7 +50,6 @@ class Uploader extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        console.log(this.state)
         this.props.next();
 
         const formData = new FormData()
@@ -58,7 +57,7 @@ class Uploader extends React.Component {
 
         axios.post("https://europe-west1-light-bill-hourly-usage.cloudfunctions.net/FullMeanAnalysis-1", formData, {
         }).then( res => {
-            console.log(res)
+            this.props.saveReport(res.data);
             this.props.next();
         }).catch(e => {
             console.log(e);

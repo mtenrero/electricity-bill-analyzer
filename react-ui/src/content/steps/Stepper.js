@@ -14,6 +14,7 @@ class Stepper extends React.Component {
         this.state = {
             step: props.step,
             servererror: "process",
+            report: null,
         }
     }
 
@@ -31,6 +32,10 @@ class Stepper extends React.Component {
         this.setState({servererror: "process"});
     }
 
+    handleReportCallback(data) {
+        this.setState({report: data})
+    }
+
     render() {
         return(
             <div className="Stepper">
@@ -40,7 +45,7 @@ class Stepper extends React.Component {
                     <Step title="Informe" description="Examina tus patrones de gasto energético" />
                 </Steps>
 
-                { this.state.step < 2 ? <Uploader next={this.moveStep.bind(this)} servererror={this.handleError.bind(this)} step={this.state.step} onSubmit={this.handleSubmit}></Uploader>: null}
+                { this.state.step < 2 ? <Uploader next={this.moveStep.bind(this)} servererror={this.handleError.bind(this)} step={this.state.step} saveReport={this.handleReportCallback.bind(this)}></Uploader>: null}
                 
                 <div className="rollbackSteps">
                 <Button type="danger" icon="redo" onClick={this.handleRestart.bind(this)}>
