@@ -15,11 +15,11 @@ class WeekDaysReport extends React.Component {
         return(
             <div className="weekDaysReport">
                 <BarChart data={this.state.report.weekDaysReport.analysis}  width={500} height={300}>
-                    <XAxis dataKey="weekDay"></XAxis>
+                    <XAxis dataKey="weekString"></XAxis>
                     <YAxis />
                     <Legend />
                     <Tooltip />
-                    <Bar dataKey="mean" fill="#82ca9d"></Bar>
+                    <Bar dataKey="mean" fill="#1890ff"></Bar>
                 </BarChart>
             </div>
         );

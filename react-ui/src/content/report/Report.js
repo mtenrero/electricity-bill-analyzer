@@ -14,7 +14,7 @@ class Report extends React.Component {
     render() {
         return(
             <div className="report">
-                <Card title="Consumo por días de la semana">
+                <Card title="Media de consumo por días de la semana" className="centerReport">
                     <WeekDaysReport {...this.props}></WeekDaysReport> 
                 </Card>
                 
