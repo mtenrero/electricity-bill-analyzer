@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Steps, message } from 'antd';
+import { Steps, message, Button } from 'antd';
 
 import './steps.css'
 import Uploader from './Uploader';
@@ -18,12 +18,17 @@ class Stepper extends React.Component {
     }
 
     moveStep() {
-        this.setState({step: this.state.step + 1})
+        this.setState({step: this.state.step + 1});
     }
 
     handleError() {
-        message.error("Error procesando el fichero, posiblemente no tenga un contenido válido")
-        this.setState({servererror: "error"})
+        message.error("Error procesando el fichero, posiblemente no tenga un contenido válido");
+        this.setState({servererror: "error"});
+    }
+
+    handleRestart() {
+        this.setState({step: 0});
+        this.setState({servererror: "process"});
     }
 
     render() {
@@ -36,6 +41,12 @@ class Stepper extends React.Component {
                 </Steps>
 
                 { this.state.step < 2 ? <Uploader next={this.moveStep.bind(this)} servererror={this.handleError.bind(this)} step={this.state.step} onSubmit={this.handleSubmit}></Uploader>: null}
+                
+                <div className="rollbackSteps">
+                <Button type="danger" icon="redo" onClick={this.handleRestart.bind(this)}>
+                    Empezar de nuevo
+                </Button>
+                </div>
             </div>
         );
     }

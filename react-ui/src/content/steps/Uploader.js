@@ -56,7 +56,7 @@ class Uploader extends React.Component {
         const formData = new FormData()
         formData.append('file', this.state.file)
 
-        axios.post("http://localhost:5000/", formData, {
+        axios.post("https://europe-west1-light-bill-hourly-usage.cloudfunctions.net/FullMeanAnalysis-1", formData, {
         }).then( res => {
             console.log(res)
             this.props.next();
