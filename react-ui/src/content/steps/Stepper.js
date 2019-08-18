@@ -5,6 +5,8 @@ import { Steps, message, Button } from 'antd';
 import './steps.css'
 import Uploader from './Uploader';
 
+import Report from '../report/Report';
+
 const { Step } = Steps;
 
 class Stepper extends React.Component {
@@ -47,10 +49,12 @@ class Stepper extends React.Component {
 
                 { this.state.step < 2 ? <Uploader next={this.moveStep.bind(this)} servererror={this.handleError.bind(this)} step={this.state.step} saveReport={this.handleReportCallback.bind(this)}></Uploader>: null}
                 
+                { this.state.step >= 2 ? <Report report={this.state.report}></Report> : null }
+
                 <div className="rollbackSteps">
-                <Button type="danger" icon="redo" onClick={this.handleRestart.bind(this)}>
-                    Empezar de nuevo
-                </Button>
+                    <Button type="danger" icon="redo" onClick={this.handleRestart.bind(this)}>
+                        Empezar de nuevo
+                    </Button>
                 </div>
             </div>
         );
