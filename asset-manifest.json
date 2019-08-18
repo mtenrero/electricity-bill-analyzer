@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/electricity-bill-analyzer/static/css/main.7121833c.chunk.css",
+    "main.js": "/electricity-bill-analyzer/static/js/main.280de773.chunk.js",
+    "main.js.map": "/electricity-bill-analyzer/static/js/main.280de773.chunk.js.map",
+    "runtime~main.js": "/electricity-bill-analyzer/static/js/runtime~main.e799f711.js",
+    "runtime~main.js.map": "/electricity-bill-analyzer/static/js/runtime~main.e799f711.js.map",
+    "static/css/2.93e9ecf4.chunk.css": "/electricity-bill-analyzer/static/css/2.93e9ecf4.chunk.css",
+    "static/js/2.7c9c8f92.chunk.js": "/electricity-bill-analyzer/static/js/2.7c9c8f92.chunk.js",
+    "static/js/2.7c9c8f92.chunk.js.map": "/electricity-bill-analyzer/static/js/2.7c9c8f92.chunk.js.map",
+    "index.html": "/electricity-bill-analyzer/index.html",
+    "precache-manifest.a70969f08b9b1512f646e1319f1614e5.js": "/electricity-bill-analyzer/precache-manifest.a70969f08b9b1512f646e1319f1614e5.js",
+    "service-worker.js": "/electricity-bill-analyzer/service-worker.js",
+    "static/css/2.93e9ecf4.chunk.css.map": "/electricity-bill-analyzer/static/css/2.93e9ecf4.chunk.css.map",
+    "static/css/main.7121833c.chunk.css.map": "/electricity-bill-analyzer/static/css/main.7121833c.chunk.css.map"
+  }
+}
